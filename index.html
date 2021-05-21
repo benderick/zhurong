@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>祝融号</title>
+	<meta charset="UTF-8">
+	<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'/>
+	<link rel="shortcut icon" href="icon.ico"> 
+	<link rel="stylesheet" href="swiper/swiper-3.4.2.min.css">
+	<link rel="stylesheet" href="swiper/animate.min.css">
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        html,body{
+            height: 100%;
+        }
+
+        body{
+            width: 414px;
+            margin: 0 auto;
+        }
+
+        .swiper-container {
+            width: 100%;
+            height: 100%;
+        }
+        .swiper-slide{
+            width: 100%;
+            height: 100%;
+            /*background: url(img/bg.jpg) no-repeat top center;*/
+            background-size: 100% 100%;
+        }
+
+/*翻页箭头*/
+        #array{
+            width: 56px;
+            height: 73px;
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            margin-left: -28px;
+            z-index: 999;
+            animation: start 1.5s infinite ease-in-out;
+        }
+
+        @keyframes start {
+            0%,30% {opacity: 0;transform: translate(0,10px);}
+            60% {opacity: 1;transform: translate(0,0);}
+            100% {opacity: 0;transform: translate(0,-8px);}
+        }
+
+/*图片样式*/
+        .s11,.s12,.s13,.s14,.s15,.s16,.s17{
+            position: absolute;
+        }
+        .s11{
+            z-index: 40;
+            width: 100%;
+            bottom: 0;
+        }
+        .s12{
+            z-index: 30;
+            width: 60%;
+            left: 50%;
+            margin-left: -8%;
+            top: 5%;
+        }
+        .s13{
+            z-index: 20;
+            width: 100%;
+            top: -5%;
+        }
+        .s14{
+            z-index: 10;
+            width: 100%;
+            top: 42%;
+        }
+        .s15{
+            z-index: 5;
+            width: 100%;
+        }
+        .s16{
+            width: 100%;
+            top: 0;
+        }
+        .s17{
+            z-index: 20;
+            width: 100%;
+            bottom: 0;
+        }
+        .s2cloud{
+            top: -20%;
+        }
+
+/*音乐*/
+        #music{
+            position: absolute;
+            right: 0.7rem;
+            top: 0.7rem;
+            z-index: 999;
+            width: 1.75rem;
+            height: 1.75rem;
+            background-size: 100%;
+        }
+
+        #music audio{
+            display: none;
+        }
+
+        .play{
+            background: url(img/play.png) no-repeat;
+            animation: music_disc 4s linear infinite;
+        }
+
+        @keyframes music_disc{
+            from {transform: rotate(0)}
+            to {transform: rotate(360deg)}
+        }
+
+        .paused{
+            background: url(img/pause.png) no-repeat;
+        }
+
+
+/*视频*/
+        .mv-container {
+            background-color: #262626;
+            position: relative;
+            margin-top: 40%;
+        }
+        .mv-wrapper {
+            padding: 0;
+
+        }
+        .mv-player{
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            top: 50%;
+            left: 50%;
+            margin-top: -25px;
+            margin-left: -25px;
+        }
+
+/*文本样式*/
+        .s5-text{
+            position: absolute;
+            width: 300px;
+            height: 800px;
+            top:3%;
+            left: 15%;
+            font-size: small;
+            color: white;
+            line-height: 1.7em;
+            overflow: hidden;
+            padding-top: 0;
+            z-index: 100;
+        }
+
+        .s5-text .t1{
+            font-size: large;
+            color: yellow;
+            text-align: center;
+        }
+
+        .s4-text{
+            position: absolute;
+            width: 300px;
+            height: 800px;
+            top:10%;
+            left:15%;
+            font-size: small;
+            color: white;
+            line-height: 1.7em;
+            opacity: 1;
+            overflow: hidden;
+            padding-top: 0;
+            z-index: 100;
+        }
+        .s4-text .t1{
+            font-size: large;
+            color: yellow;
+            text-align: center;
+        }
+        
+        #s4-t{
+            position: absolute;
+            width: 200px;
+            height: 100px;
+            left: 100px;
+            top:2.6em ;
+            text-align: center;
+            font-size: larger;
+            color:white;
+        }
+
+        .s4-a{
+            position: absolute;
+            width: 350px;
+            height: 600px;
+            top:11em;
+            right: 30px;
+            font-size: small;
+            color: white;
+            line-height: 1.7em;
+            overflow: hidden;
+            padding-top: 0;
+        }
+
+        .s4-a p{
+            font-size: large;
+            color: yellow;
+            text-align: center;
+            display: block;
+        }
+
+        /*s4顶部图片*/
+        .ding{
+            position: absolute;
+            width: 100%;
+            height: 50%;
+            left:20px;
+            top: -200px;
+        }
+    </style>
+</head>
+<body>
+	<div class="swiper-container">
+        <!--音乐-->
+		<div id="music" class="paused"><audio src="mp3/music.mp3"></audio></div>
+
+		<div class="swiper-wrapper">
+            <!-- slide1 -->
+            <div class="swiper-slide" style="background: url(img/bg-1.jfif) no-repeat top center;">
+                <img src='img/s1-1.png' class="s11">
+                <!--在需要运动的元素上面增加类名 ani-->
+                <img src='img/s1-2.png' class="ani s12" swiper-animate-effect="zoomIn"
+                     swiper-animate-duration="1.0s" swiper-animate-delay="0.5s" width="200%">
+                <img src='img/s1-4.png' class="ani s14" swiper-animate-effect="fadeInLeft"
+                     swiper-animate-duration="3.5s" swiper-animate-delay="1.0s">
+                <img src='img/s1-6.png' class="ani s16" swiper-animate-effect="fadeInLeft"
+                     swiper-animate-duration="3.5s" swiper-animate-delay="1.0s" style="width: 75%">
+            </div>
+
+			<!-- slide2 -->
+			<div class="swiper-slide" style="background-image: url(img/bg.jpg)">
+				<img src='img/111.png' class="ani s16" swiper-animate-effect="fadeInDown"
+				swiper-animate-duration="2.5s" swiper-animate-delay="0.5s">
+				<img src='img/23.png' class="ani s17" swiper-animate-effect="fadeInUp"
+				swiper-animate-duration="2.5s" swiper-animate-delay="0.5s" style="bottom: 6%">
+			</div> 
+
+            <!-- slide3 -->
+            <div class="swiper-slide" style="background-image: url('img/bg-3.png')">
+                <img src='img/qiu.png' class="ani s16" swiper-animate-effect="fadeInDown"
+                     swiper-animate-duration="1.0s" swiper-animate-delay="0.5s">
+                <img src='img/curiosity_selfie.jpg' class="ani s17" swiper-animate-effect="fadeInUp"
+                     swiper-animate-duration="4.5s" swiper-animate-delay="0.5s" style="height:400px;">
+                <img src='img/s15.png' class="ani s15 s2cloud" swiper-animate-effect="fadeInDown"
+                     swiper-animate-duration="1.5s" swiper-animate-delay="0.5s">
+            </div>
+
+			<!-- slide4 -->
+			<div class="swiper-slide" style="background-image: url(img/bg.jpg)">
+				<img src='img/8.png' class="ding ani s16" swiper-animate-effect="fadeInDown"
+				swiper-animate-duration="1.0s" swiper-animate-delay="0.5s">
+
+				<img src='img/6.png' class="ani s17" swiper-animate-effect="fadeInUp"
+				swiper-animate-duration="3.0s" swiper-animate-delay="0.5s">
+
+                <img src='img/7.png' class="ani s17" swiper-animate-effect="fadeInUp"
+				swiper-animate-duration="3.0s" swiper-animate-delay="0.5s">
+
+                <div id="s4-t" class="ani s14" swiper-animate-effect="fadeInLeft" swiper-animate-duration="3.5s" swiper-animate-delay="1.0s">
+                    祝融号国内外评价
+                </div>
+                <div class="s4-a ani s14" swiper-animate-effect="fadeInLeft"
+                     swiper-animate-duration="3.5s" swiper-animate-delay="1.0s">
+                    <p class="s4-t1">中国“祝融号”引发外国科学家好奇</p>
+
+                    <div class="s4-t3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;美国《纽约时报》、澳大利亚广播公司对中国的“探火”任务进行了详细报道。
+
+                        《纽约时报》对中国此次“探火”进行了系统化的介绍和梳理。其还介绍了中国的火星任务以一首经典诗歌命名为“天问”，以及火星车以中国火神“祝融”命名等细节。
+
+                        《纽约时报》指出，中国已经实现了一件只有两个国家——美国和苏联做过的事情：成功登陆火星。
+
+                        英国《自然》发了一篇名为《为什么中国火星探测器的着陆点让地质学家们兴奋不已》的长文，文中列举了多名科学家对于“祝融号”火星车旅程的好奇。
+                    </div>
+                    <br><p class="s4-t2">中国为人类知识库贡献更多力量</p>
+
+                    <div class="s4-t4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;“天问一号”携“祝融号”成功着陆火星，标志着“中国探索太空能力的不断增强”。而中国航天领域的未来动向，也愈发受到国际关注。
+
+                        美国国家航空航天局科学任务理事会向中国表示了祝贺。“与全球科学界一起，我期待着这项任务为人类了解这个红色行星将做出的重要贡献”
+
+                        成功登陆火星给中国带来了巨大鼓舞，同时也证明“中国可以为人类知识库贡献更多力量。
+                        中国的火星探测任务，代表了“建设航天强国雄心的又一个里程碑”，未来将有更多潜在的阶段性成果。有助于给未来人类的访问提供支持。中国在火星的成功着陆向世界证明，还有一个国家拥有先进的行星间空间探索能力。
+
+                    </div>
+                </div>
+			</div>
+
+            <!-- slide5 -->
+            <div class="swiper-slide" style="background-image: url(img/bg.jpg)">
+                <img src='img/s4-1.png' class="ani s16" swiper-animate-effect="fadeInDown"
+                     swiper-animate-duration="1.0s" swiper-animate-delay="0.5s">
+                <img src='img/s4-2.png' class="ani s17" swiper-animate-effect="fadeInUp"
+                     swiper-animate-duration="3.0s" swiper-animate-delay="0.5s">
+                <img src='img/s4-3.jpg' class="ani s14" swiper-animate-effect="zoomIn"
+                     swiper-animate-duration="4.5s" swiper-animate-delay="0.5s">
+                <img src='img/s4-4.png' class="ani s15 s2cloud" swiper-animate-effect="fadeInDown"
+                     swiper-animate-duration="1.5s" swiper-animate-delay="0.5s">
+
+                <div class="s4-text ani s14"  swiper-animate-effect="zoomIn"
+                     swiper-animate-duration="2.0s" swiper-animate-delay="0.6s">
+                    <p class="t1">逐梦火星！青科大研究团队：百炼成钢“天问一号”安全软着陆</p>
+                    <br>
+                    <div class="t3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;青岛科技大学自主导航与智能控制研究所成立于2003年，是国内较早研究自主导航的高校单位，由邵巍、于镭、曹梦龙、姚文龙等老师以及研究生、博士生组成，团队规模有四五十人。各成员之间团结协作，戮力同心。
+
+                        其中，于镭老师主要负责总体任务的设定和总体方案的制订；邵巍老师和曹梦龙老师主要负责自主导航算法的设计工作；姚文龙老师主要负责对控制算法以及控制设计方面进行相关的研究。
+                    </div>
+                    <br>
+                    <div class="t4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当我们抬头仰望
+                        火星车上有着青科大的影子
+                        “天问一号”成功着陆
+                        这是中国人民的骄傲
+                        更是全体青科人的骄傲
+
+                        后续
+                        祝融号火星车将依次开展
+                        对着陆点全局成像、
+                        自检驶离着陆平台、巡视探测等任务
+                        祝融，祝融，继续加油！
+                        为中国航天人加油
+                        为青科大“火星人”点赞！
+                    </div>
+                </div>
+            </div>
+
+			<!-- slide6 -->
+			<div class="swiper-slide" style="background-image: url(img/bg.jpg)">
+				<img src='img/s5-1.png' class="ani s13" swiper-animate-effect="fadeInDown" swiper-animate-duration="3.0s" swiper-animate-delay="0.5s">
+				<img src='img/s5-2.jpg' class="ani s14" swiper-animate-effect="fadeInLeft"
+				swiper-animate-duration="3.5s" swiper-animate-delay="1.0s">
+				<img src='img/s5-3.png' class="ani s17" swiper-animate-effect="fadeInRight"
+				swiper-animate-duration="3.0s" swiper-animate-delay="0.5s">
+
+                <div class="s5-text ani s14"  swiper-animate-effect="fadeInLeft" swiper-animate-duration="3.5s" swiper-animate-delay="1.0s" style="top: 40px">
+                    <p class="t1">祝融号成功着陆火星，美国专家哀嚎：中国正在替代美国的领导地位</p>
+                    <br>
+                    <div class="t3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;祝融号火星探测器的成功标志着中国成为了当今世界第三个有能力向火星派遣探测器的国家，
+                        祝融号也成为了全球范围内第五辆成功登陆火星的火星探测器。
+                        在未来的92个地球日内，这辆以中国神话中被冠以“火神”的祝融所命名的火星探测器将承载着无数国人期盼执行的一系列任务，
+                        为将来中国航天的触角延伸到更远的深空打下基础。中国取得的成功自然也吸引到了众多外国“同行”的注意。
+                        祝融号火星探测器成功登陆火星的消息甫一传出，美国宇航局（NASA）助理局长祖尔布琴就在社交媒体发文祝贺“祝融号”登陆火星，并称自己与全球科学界共同期待祝融号火星探测器在促进人类了解火星方面作出重要贡献。
+                    </div>
+                    <br>
+                    <div class="t4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;作为航空航天领域的专家以及《争夺太空：控制地外空间资源的大国竞争》一书的作者之一，纳姆拉塔·高斯瓦米在接受《华尔街日报》的采访时表示祝融号探测器登陆火星对于中国来说是关键的一刻，这一发生在3亿公里外的事件向整个人类世界发出了一个信号，中国在太空探索这一领域已经赶上了美国，并且中国还在为了取代美国的领导地位而不断地努力。
+                        随着中国综合实力的不断发展，中国在各个领域不断取得突破，而航天领域只是众多领域中的一个方面，正如人类航天之父康斯坦丁·齐奥尔科夫斯基所言，“地球是人类的摇篮，但人类不可能永远被束缚在摇篮里。”中国注定要走向更远更深的未来。
+                    </div>
+                </div>
+			</div>
+
+            <!-- slide7 -->
+            <div class="swiper-slide" style="background-image: url(img/bg.jpg)">
+                <div class="mv-container">
+                    <div class="mv-wrapper">
+                        <video id="mv-video" class="video-js" controls>
+                            <source src="mp4/video.mp4">
+                        </video>
+                    </div>
+
+                    <img class="mv-player" src="img/mvplayer.png">
+                </div>
+            </div>
+		</div> 
+		<img src="img/arrow.png" id="array" class="resize">
+	</div>
+
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="swiper/swiper-3.4.2.min.js"></script>
+    <script src="swiper/swiper.animate.min.js"></script>
+    <link rel="stylesheet" href="videojs/video-js.min.css">
+    <script src="videojs/video.min.js"></script>
+    <script>
+        $(function () {
+            // 音乐按钮
+            $('#music').click(function () {
+                if ($('audio').get(0).paused === true) {
+                    $(this).removeClass('paused');
+                    $(this).addClass('play');
+                    $('audio').get(0).play();
+                } else {
+                    $(this).removeClass('play');
+                    $(this).addClass('paused');
+                    $('audio').get(0).pause();
+                }
+            });
+
+            var mySwiper = new Swiper('.swiper-container', {
+                direction: 'vertical',
+                loop: false,
+                onInit: function (swiper) {
+                    swiperAnimateCache(swiper); //隐藏动画元素
+                    swiperAnimate(swiper); //初始化完成开始动画
+                },
+                onSlideChangeEnd: function (swiper) {
+                    swiperAnimate(swiper); //每个slide切换结束时也运行当前slide动画
+                },
+
+                // 切页
+                onSlideChangeStart: function (swiper) {
+
+                    if (swiper.activeIndex === 6) {
+                        $('audio').get(0).pause();
+                        $('#music').css('display', 'none');
+
+                    }
+                    else {
+                        if ($('audio').get(0).paused === true){
+                            $('#music').css('display', 'block');
+                            $('#music').removeClass('play');
+                            $('#music').addClass('paused');
+                        }
+                        else {
+                            $('#music').removeClass('paused');
+                            $('#music').addClass('play');
+                        }
+
+                    }
+
+                    if (swiper.activeIndex === 6) {
+                        var mvplayer = videojs('mv-video');
+                        mvplayer.ready(function () {
+
+                            this.on('play', function () {
+                                $('.mv-player').css('display', 'none');
+                            });
+
+                            this.on('pause', function () {
+                                $('.mv-player').css('display', 'inline-block');
+
+                            });
+
+                            this.play();
+                            // 设置视频宽高
+                            var $video = $('#mv-video');
+                            var whr = $video.width() / $video.height(); //宽高比
+                            $video.css('width', '100%');
+                            $video.css('height', $video.width() / whr);
+                            // 存参数，自定义属性
+                            $video.attr('whr', whr);
+                        });
+
+                        $('.mv-player').click(function () {
+                            mvplayer.play();
+                            $(this).css('display', 'none');
+                        });
+
+                        // 浏览器尺寸发生变化时执行
+                        $(window).resize(function () {
+                            var $video = $('#mv-video');
+                            var whr = $video.attr('whr');
+                            $video.css('height', $video.width() / whr);
+                        });
+                    }
+                    else {
+                        var mvplayer = videojs('mv-video');
+                        mvplayer.pause();
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
